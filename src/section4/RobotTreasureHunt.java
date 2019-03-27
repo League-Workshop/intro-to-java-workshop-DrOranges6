@@ -16,46 +16,58 @@ import org.jointheleague.graphical.robot.Robot;
 public class RobotTreasureHunt implements KeyEventDispatcher{
 
 	// 1. Create a new mini robot (type "mini" inside the parentheses)
-	
+	Robot mini=new Robot("mini");
 	private void goUp() throws InterruptedException {
 		// 2. Make the robot move up the screen (use setAngle(angle) and microMove(distance))
-		
+		mini.setAngle(0);
+		mini.microMove(6);
 	}
 
 	private void goDown() throws InterruptedException{
 		// 3. make the robot move down the screen (use setAngle(angle) and microMove(distance))
-		
+		mini.setAngle(180);
+		mini.microMove(6);
 	}
 
 	private void turnLeft() throws InterruptedException{
 		// 4. Make the robot turn to the left (use setAngle(angle) and microMove(distance))
-
+mini.setAngle(270);
+mini.microMove(6);
 	}
 
 	private void turnRight() throws InterruptedException{
 		// 5. make the robot turn to the right (use setAngle(angle) and microMove(distance))
-		
+		mini.setAngle(90);
+		mini.microMove(6);
 	}
 
 	private void spaceBarWasPressed() {
 
 		// 5. Change ROBOTNAME below to match the name of the robot you created in step 1.  THEN, remove the slashes at the beginning of the next two lines
 		//int robotXLocation = ROBOTNAME.getX();
+		int robotXLocation = mini.getX();
 		//int robotYLocation = ROBOTNAME.getY();
-		
+		int robotYLocation = mini.getY();
 		// 6. Print the robotXLocation and robotYLocation variables to the console 
-		
-		// 7. If robot is at same location as the little girl
-		//      --make a pop-up tell the robot where to go next
+		System.out.println("X="+ robotXLocation + "Y="+robotYLocation);
+		// 7. If robot is at same location as the little girl X=726Y=420
+		//      --make a pop-up tell the robot where to go nextJ
+		if(robotXLocation>700 && robotXLocation<750 && robotYLocation>400 && robotYLocation<450) {
+			JOptionPane.showMessageDialog(null, "Jump.");
+		}
 		
 		// 8. Give the user subsequent clues at different locations on the image
-		// (pirate robot, swamp, parrots, etc.)
-		
-		// 9.  If the robot is in the final location
+		// (pirate robot, swamp, parrots, etc.) X=594Y=393
+		if(robotXLocation>575 && robotXLocation<625 && robotYLocation>390 && robotYLocation<430) {
+			JOptionPane.showMessageDialog(null, "Rick Roll Time.");
+		}
+			
+		// 9.  If the robot is in the final location X=204Y=63
+		if(robotXLocation>190 && robotXLocation<240 && robotYLocation>60 && robotYLocation<100) {
 		//     --call the treasureFound() method
-		
+		treasureFound();
 	}
-
+	}
 	private void go() {
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
 		Robot.setWindowImage("section4/treasure_hunt.jpg");
@@ -99,7 +111,7 @@ public class RobotTreasureHunt implements KeyEventDispatcher{
 	
 	static void treasureFound() {
 		try {
-			URI uri = new URI("https://www.youtube.com/watch?v=G0aIg4N6aro");
+			URI uri = new URI("https://www.youtube.com/watch?v=Tlwda9S58Lg");
 			java.awt.Desktop.getDesktop().browse(uri);
 		} catch (Exception e) {
 			e.printStackTrace();
